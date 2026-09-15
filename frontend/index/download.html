@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/download.css">
+    <title>Download</title>
+</head>
+<body>
+    <div class="cursor small"></div>
+    <div class="cursor big"></div>
+
+    <div class="loading">
+        <video class="downLoading" src="../images/Loading.mp4" muted autoplay></video>
+         <p class="result"></p>       
+
+    </div>
+
+    <div class="loading2">
+    </div>
+
+    <nav>
+        <ul>
+            <div class="ul_listBox">
+                <li>Main</li>
+                <li >Generate</li>
+                <li class="on">Download</li>
+                <li>Asset</li>
+                <li>Link</li>
+                <div class="ul_imgBox">
+                    <img src="../images/icon _minus outline_.png">
+                    <img src="../images/icon _copy outline_.png">
+                    <img src="../images/icon _close outline_.png">
+                </div>
+            </div>
+    
+        </ul>
+    </nav>
+
+    <section class="s3">
+
+        <div class="a3">
+
+            <div class="imgBox">
+                <img src="../images/gif_3.gif" alt="">
+            </div>
+            <button class="down"><a href="../images/gif_3.gif" download="">Download</a></button>
+
+        </div><!--a3-->
+        
+    </section><!--s3-->
+
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+var cursorBig = document.querySelector('.big');
+var cursorSmall = document.querySelector('.small');
+var a = document.querySelectorAll('button');
+
+
+document.addEventListener('mousemove', function(e){
+  var x = e.clientX;
+  var y = e.clientY;
+  cursorBig.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`
+});
+
+document.addEventListener('mousemove', function(e){
+  var x = e.clientX;
+  var y = e.clientY;
+  cursorSmall.style.left = x + 'px';
+  cursorSmall.style.top = y + 'px';
+});
+
+
+document.addEventListener('mousedown', function(){
+  cursorBig.classList.add('click');
+  cursorSmall.classList.add('hover__small')
+});
+
+
+document.addEventListener('mouseup', function(){
+  cursorBig.classList.remove('click')
+  cursorSmall.classList.remove('hover__small')
+});
+
+
+a.forEach(item => {
+  item.addEventListener('mouseover', () => {
+    cursorBig.classList.add('hover__big');
+    cursorSmall.classList.add('hover__small');
+  });
+  item.addEventListener('mouseleave', () => {
+    cursorBig.classList.remove('hover__big');
+    cursorSmall.classList.remove('hover__small');
+  });
+})
+
+function startTypingEffect() {    
+String.prototype.toKorChars = function() { 
+  var cCho = [ 'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ], 
+  cJung = [ 'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ' ], 
+  cJong = [ '', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ], cho, jung, jong; 
+   
+  var str = this, 
+      cnt = str.length, 
+      chars = [], 
+      cCode; 
+  for (var i = 0; i < cnt; i++) { 
+    cCode = str.charCodeAt(i); 
+    if (cCode == 32) { 
+      chars.push(" ");
+      continue;
+    } 
+    if (cCode < 0xAC00 || cCode > 0xD7A3) { 
+      chars.push(str.charAt(i)); continue; 
+    } 
+    cCode = str.charCodeAt(i) - 0xAC00; 
+ 
+    jong = cCode % 28; // 종성 
+    jung = ((cCode - jong) / 28 ) % 21 // 중성 
+    cho = (((cCode - jong) / 28 ) - jung ) / 21 // 초성 
+ 
+
+    chars.push(cCho[cho]);
+    chars.push(String.fromCharCode( 44032 + (cho * 588) + (jung  * 28)));
+    if (cJong[jong] !== '') { 
+       chars.push(String.fromCharCode( 44032 + (cho * 588) + (jung  * 28) + jong ));
+    }
+            
+  } 
+  return chars; 
+ }
+ 
+ 
+ //타이핑할 문장
+    var result  = "Please wait about 1 min...";
+    var typeing1=[];
+    result = result.split(''); // 한글자씩자름
+ 
+    for(var i =0; i<result.length; i++){
+      typeing1[i]=result[i].toKorChars();
+    }
+ 
+    var resultDiv = document.getElementsByClassName("result")[0];
+ 
+    var text = "";
+    var i=0; 
+    var j=0; 
+ 
+    var imax = typeing1.length;
+ 
+    var inter = setInterval(typi,150);
+ 
+ 
+    function typi(){
+      if(i<=imax-1){
+        var jmax = typeing1[i].length;
+        resultDiv.innerHTML = text + typeing1[i][j];
+        j++;
+        if(j==jmax){
+          text+=typeing1[i][j-1];
+          i++;
+          j=0;
+        }
+      } else{
+        clearInterval(inter);
+      }
+
+    }
+    var inter = setInterval(type, 150);
+}
+setTimeout(startTypingEffect, 7000);
+
+
+setTimeout(function(){
+
+testEle = $('.loading');
+
+testEle.fadeOut();
+
+}, 20000)
+
+
+
+</script>
+</body>
+</html>

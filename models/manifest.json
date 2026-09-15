@@ -1,0 +1,124 @@
+{
+  "_comment": "PixG가 사용한 모델 목록입니다. 전부 공개 배포본이며 가중치 파일은 저장소에 포함하지 않습니다(.gitignore). ComfyUI의 models/ 하위 해당 폴더에 직접 내려받아 배치하십시오.",
+  "_generated": "2026-09-15",
+  "_note": "버전·해시는 당시 기록이 남아 있지 않아 파일명 기준으로만 적었습니다. 동일 파일명을 CivitAI/HuggingFace에서 검색해 받으십시오.",
+
+  "checkpoints": [
+    {
+      "file": "cardosAnime_v20.safetensors",
+      "base": "SD 1.5",
+      "used_for": "캐릭터 스프라이트 (최종 주력)",
+      "source": "CivitAI — Cardos Anime"
+    },
+    {
+      "file": "dragonfruitUnisex_dragonfruitgtV10.safetensors",
+      "base": "SD 1.5",
+      "used_for": "캐릭터 스프라이트",
+      "source": "CivitAI — Dragonfruit Unisex"
+    },
+    {
+      "file": "aingdiffusion_v12.safetensors",
+      "base": "SD 1.5",
+      "used_for": "캐릭터 스프라이트",
+      "source": "CivitAI — AingDiffusion"
+    },
+    {
+      "file": "anyloraCheckpoint_bakedvaeBlessedFp16.safetensors",
+      "base": "SD 1.5",
+      "used_for": "건물·사물 (아이소메트릭)",
+      "source": "CivitAI — AnyLoRA"
+    },
+    {
+      "file": "handpaintedRPGIcons_v1.safetensors",
+      "base": "SD 1.5",
+      "used_for": "건물·사물 (RPG 아이콘)",
+      "source": "CivitAI — Hand Painted RPG Icons"
+    }
+  ],
+
+  "motion_modules": [
+    {
+      "file": "animatediffMotion_v15V2.ckpt",
+      "used_for": "최종 파이프라인 — Vid2Vid 프레임 생성",
+      "place_in": "custom_nodes/ComfyUI-AnimateDiff-Evolved/models/",
+      "source": "AnimateDiff — mm_sd_v15_v2"
+    },
+    {
+      "file": "mm_sd_v14.ckpt",
+      "used_for": "초기 실험 (1113판)",
+      "place_in": "custom_nodes/ComfyUI-AnimateDiff-Evolved/models/",
+      "source": "AnimateDiff — mm_sd_v14"
+    }
+  ],
+
+  "controlnet": [
+    {
+      "file": "control_v11p_sd15_openpose.pth",
+      "strength_used": 1.0,
+      "used_for": "포즈 고정 — 요구사항 ② 미세하게 다른 동작",
+      "source": "lllyasviel/ControlNet-v1-1"
+    },
+    {
+      "file": "controlnet11Models_depth.safetensors",
+      "strength_used": 0.2,
+      "used_for": "형태 보조. 높이면 음영이 과해져 픽셀 아트의 단순한 면이 깨집니다",
+      "source": "lllyasviel/ControlNet-v1-1 (depth)"
+    }
+  ],
+
+  "loras": [
+    { "file": "CspPixelArt_Style-20.safetensors", "weight": "0.5 ~ 1.0", "used_for": "픽셀 아트 스타일 (최종 채택)" },
+    { "file": "vscharacter64-v1.safetensors", "weight": 1.0, "used_for": "64px 캐릭터 스프라이트" },
+    { "file": "pixe_sd15_vscharacter64-v1.safetensors", "weight": 0.6, "used_for": "위의 변형" },
+    { "file": "pixel_4.safetensors", "weight": 0.5, "used_for": "픽셀화 보조 (최종에선 Off로 둔 워크플로우도 있음)" },
+    { "file": "Isometric_Setting.safetensors", "weight": 1.0, "used_for": "건물·사물 갈래 전용" },
+    { "file": "more_details.safetensors", "weight": "0.5 / 1.0", "used_for": "디테일 보강" }
+  ],
+
+  "_loras_compared_but_not_final": [
+    "pixel (11).safetensors", "pixel_f2.safetensors", "pixelartV3.safetensors",
+    "sxz-pxl-v1.safetensors", "game icon institute_2D.safetensors"
+  ],
+
+  "vae": [
+    { "file": "BerrysMix.vae.safetensors", "used_for": "캐릭터 갈래" },
+    { "file": "anime_vae-ft-mse-840000-ema-pruned.ckpt.vae.pt", "used_for": "초기 워크플로우" }
+  ],
+
+  "upscale_models": [
+    {
+      "file": "1x-DeJpeg-Fatality-PlusULTRA.pth",
+      "scale": "1x",
+      "used_for": "JPEG 아티팩트 제거. 해상도를 올리지 않습니다",
+      "source": "Upscale Wiki Model Database"
+    },
+    {
+      "file": "1x_PixelSharpen_100000.pth",
+      "scale": "1x",
+      "used_for": "픽셀 경계 샤프닝 — 64x64 축소 전 경계 보존",
+      "source": "Upscale Wiki Model Database"
+    }
+  ],
+
+  "textual_inversion_embeddings": [
+    "easynegative", "FastNegativeV2", "NegfeetV2", "bad-hands-5"
+  ],
+
+  "background_removal": {
+    "package": "transparent-background",
+    "model": "InSPyReNet (Salient Object Detection)",
+    "install": "pip install transparent-background",
+    "note": "포트폴리오 구버전에 U2-Net으로 적혀 있었으나 실제 코드는 InSPyReNet입니다. 둘 다 SOD 계열입니다."
+  },
+
+  "required_custom_nodes": [
+    "ComfyUI-AnimateDiff-Evolved",
+    "ComfyUI-Advanced-ControlNet",
+    "comfyui_controlnet_aux",
+    "ComfyUI-VideoHelperSuite",
+    "ComfyUI_FizzNodes",
+    "ComfyUI_Comfyroll_CustomNodes",
+    "efficiency-nodes-comfyui",
+    "ComfyUI-Custom-Scripts"
+  ]
+}

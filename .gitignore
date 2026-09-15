@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────
+#  모델 가중치 — 절대 커밋하지 않습니다
+#  전부 공개 배포본이며 출처는 models/manifest.json 에 적어두었습니다
+# ─────────────────────────────────────────────
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.bin
+*.onnx
+
+# ComfyUI 본체 / 포터블 런타임
+ComfyUI/
+ComfyUI_windows_portable/
+python_embeded/
+custom_nodes/
+venv/
+.venv/
+
+# 압축본
+*.7z
+*.zip
+*.tar
+*.tar.gz
+
+# 대용량 중간 산출물
+output/
+outputs/
+temp/
+tmp/
+
+# ─────────────────────────────────────────────
+#  자격증명 — 커밋 금지
+# ─────────────────────────────────────────────
+.env
+.env.*
+*credentials*
+*secret*
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

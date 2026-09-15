@@ -1,0 +1,271 @@
+{
+  "2": {
+    "inputs": {
+      "vae_name": "anime_vae-ft-mse-840000-ema-pruned.ckpt.vae.pt"
+    },
+    "class_type": "VAELoader"
+  },
+  "3": {
+    "inputs": {
+      "text": "(masterpiece, best quality), <lora:opossumachine:1>,white background , one girl running, yellow hair, white shirts",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "4": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "60",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer"
+  },
+  "6": {
+    "inputs": {
+      "text": "(worst quality, low quality: 1.4), nsfw",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "7": {
+    "inputs": {
+      "seed": 1234,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "33",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "24",
+        1
+      ],
+      "latent_image": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "9": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": [
+        "26",
+        2
+      ]
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "10": {
+    "inputs": {
+      "samples": [
+        "7",
+        0
+      ],
+      "vae": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "20": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_openpose.pth"
+    },
+    "class_type": "ControlNetLoaderAdvanced"
+  },
+  "24": {
+    "inputs": {
+      "strength": 4.5,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "20",
+        0
+      ],
+      "image": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "26": {
+    "inputs": {
+      "directory": "D:\\pj_10\\ComfyUI_windows_portable_nvidia_cu118_or_cpu\\ComfyUI_windows_portable\\ComfyUI\\02_Openpose",
+      "image_load_cap": 18,
+      "start_index": 0
+    },
+    "class_type": "LoadImagesFromDirectory"
+  },
+  "30": {
+    "inputs": {
+      "ckpt_name": "cardosAnime_v20.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "31": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "aaa_readme_cn",
+      "format": "image/gif",
+      "pingpong": false,
+      "save_image": true,
+      "ad_gif_preview__0": "/view?filename=aaa_readme_cn_00068_.gif&subfolder=&type=output&format=image%2Fgif",
+      "images": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffCombine"
+  },
+  "33": {
+    "inputs": {
+      "model_name": "mm_sd_v14.ckpt",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "motion_scale": 1,
+      "apply_v2_models_properly": false,
+      "model": [
+        "60",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext"
+  },
+  "39": {
+    "inputs": {
+      "images": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "40": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.5,
+      "samples": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "LatentUpscaleBy"
+  },
+  "41": {
+    "inputs": {
+      "seed": 1234,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 0.5,
+      "model": [
+        "33",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "24",
+        1
+      ],
+      "latent_image": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "42": {
+    "inputs": {
+      "samples": [
+        "41",
+        0
+      ],
+      "vae": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "43": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "aaa_readme_cn",
+      "format": "image/gif",
+      "pingpong": true,
+      "save_image": true,
+      "images": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffCombine"
+  },
+  "53": {
+    "inputs": {
+      "switch": "On",
+      "lora_name": "pixel-portrait-v1.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1
+    },
+    "class_type": "CR Load LoRA"
+  },
+  "57": {
+    "inputs": {
+      "upscale_method": "area",
+      "width": 64,
+      "height": 64,
+      "crop": "disabled"
+    },
+    "class_type": "ImageScale"
+  },
+  "60": {
+    "inputs": {
+      "lora_name": "pixe_sd15_vscharacter64-v1.safetensors",
+      "strength_model": 0.6,
+      "strength_clip": 1,
+      "model": [
+        "30",
+        0
+      ],
+      "clip": [
+        "30",
+        1
+      ]
+    },
+    "class_type": "LoraLoader"
+  }
+}

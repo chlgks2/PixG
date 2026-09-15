@@ -1,0 +1,223 @@
+*{
+    padding: 0;
+    margin: 0;
+    cursor: none;
+
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+body{
+    background-color: black;
+    /* background-repeat: no-repeat; */
+    /* background-position: center -60px; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ------------------button 설정 --------------*/
+button{
+    transition: all ease-out 0.5s; 
+    font-family: 'Press Start 2P';
+    background-color: #48FF23;
+    color: #000;
+    padding: 20px;
+    border-radius: 5px;
+    /* cursor: pointer; */
+    margin-top: 50px;
+    font-size: 18px;
+    width: 200px;
+    height: 70px;
+}
+
+button:hover, .down:hover{
+    transition: all ease-out 0.5s; 
+    color: #fff;
+    background-color: rgb(11, 67, 0);
+}
+
+/* ------------------button 설정 끝--------------*/
+
+/* ------------------ mouse 설정 --------------*/
+
+.small {
+    height: 10px;
+    width: 10px;
+    background-color: green;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 5px green) drop-shadow(0 0 20px green);
+    
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: height 0.2s, width 0.2s;
+
+    z-index: 9999;
+}
+
+.big {
+    height: 50px;
+    width: 50px;
+    border: 3px solid green;
+    border-radius: 100px;
+    filter: drop-shadow(0 0 5px green) drop-shadow(0 0 20px green);
+    
+    position: fixed;
+    pointer-events: none;
+    transform: translate(calc(-50%), -50%);
+    transition: height 0.5s, width 0.5s, filter 0.5s;
+
+    z-index: 9999;
+}
+
+.hover__big {
+    height: 100px;
+    width: 100px;
+    filter: drop-shadow(0 0 5px green) drop-shadow(0 0 20px green) drop-shadow(0 0 40px green);
+    
+    transition: height 0.5s, width 0.5s, filter 0.5s;
+}
+
+
+.hover__small {
+    height: 8px;
+    width: 8px;
+    
+    transition: height 0.2s, width 0.2s;
+}
+
+/* ------------------mouse 설정 끝 --------------*/
+
+
+/* ------------------nav 설정  --------------*/
+nav{
+    width: 100%;
+    height: 60px;
+    background-color: #48FF23;
+    position: fixed;
+    top: 0;
+
+    z-index: 50;
+}
+    
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    left:0;
+}
+
+.ul_listBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ul_imgBox{
+    margin-left:700px;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    line-height: 60px;
+}
+
+nav li{
+    color: #000;
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+    line-height: 60px;
+} 
+
+nav li:hover{
+    background-color:rgb(11, 67, 0);
+    color: #fff;
+}
+nav li.on{
+    background-color:rgb(11, 67, 0);
+    color: #fff;
+
+}
+/* ------------------nav 설정 끝  --------------*/
+
+
+.loading{
+
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 999;
+}
+
+.result{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    font-family: 'Press Start 2P';
+    font-size: 30px;
+    color: #48FF23;
+}
+
+.loading video{
+    width: 100%;
+    margin-top: -70px;
+}
+section{
+    height: 100vh;
+}
+
+.a3{
+
+    position: absolute;
+    left:50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imgBox {
+    width: 700px;
+    height: 500px;
+
+    margin-top: 40px;
+    overflow: auto;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+    border: 10px dashed #48FF23;
+    user-select: none;
+    transition: 0.4s;
+}
+
+.a3 img{
+    width: 500px;
+    height: 500px;
+}
