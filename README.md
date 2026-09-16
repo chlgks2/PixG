@@ -38,20 +38,20 @@ AnimateDiff로 **64프레임 영상**을 생성한 뒤 프레임을 추출해 �
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="assets/showcase/13-animation-beam-attack.gif" width="200"> | <img src="assets/showcase/14-animation-sword.gif" width="200"> | <img src="assets/showcase/15-animation-axe.gif" width="200"> |
-| **기 공격** — 25프레임 | **검 휘두르기** — 38프레임 | **도끼 휘두르기** — 25프레임 |
+| <img src="assets/showcase/13-animation-sword-slash.gif" width="200"> | <img src="assets/showcase/14-animation-jump.gif" width="200"> | <img src="assets/showcase/15-animation-run-alt.gif" width="200"> |
+| **검 휘두르기** — 25프레임 | **점프** — 38프레임 | **달리기 (다른 스타일)** — 25프레임 |
 | <img src="assets/showcase/03-animation-run-navy.gif" width="200"> | <img src="assets/showcase/04-animation-run-white.gif" width="200"> | |
 | 달리기 · 남색 갑옷 — 64프레임 | 달리기 · 청백 복장 — 64프레임 | |
 
-**달리기뿐 아니라 무기 공격·원거리 공격 동작까지** 같은 파이프라인으로 생성했습니다.
+**달리기뿐 아니라 검 공격·점프까지** 같은 파이프라인으로 생성했습니다.
 위 세 편은 당시 서비스 데모 페이지에 실렸던 결과물입니다.
 
 ### 같은 파이프라인, 다른 동작
 
 | | |
 |:---:|:---:|
-| <img src="assets/showcase/17-spritesheet-beam-attack.png" width="420"> | <img src="assets/showcase/01-spritesheet-run.png" width="330"> |
-| **기 공격** 25프레임 · 8×4 격자 | **달리기** 64프레임 · 8×8 격자 |
+| <img src="assets/showcase/17-spritesheet-sword-slash.png" width="420"> | <img src="assets/showcase/01-spritesheet-run.png" width="330"> |
+| **검 휘두르기** 25프레임 · 8×4 격자 | **달리기** 64프레임 · 8×8 격자 |
 
 프레임 수가 달라도 **8열 격자에 맞춰 자동으로 행이 늘어나고, 8의 배수가 아니면 투명 프레임으로 채웁니다.** 후처리 코드를 고치지 않고 두 동작 모두 처리했습니다.
 
