@@ -7,8 +7,8 @@
 기존 생성형 AI가 "픽셀 느낌의 이미지"까지만 만들고 멈추는 지점에서, **배경 제거와 균일 배치까지 자동화해 에셋으로 완성**한 것이 차별점입니다.
 
 <p align="center">
-  <img src="assets/showcase/01-spritesheet-archer.png" width="512" alt="생성된 스프라이트 시트"><br>
-  <em>최종 산출물 — 궁수 캐릭터 24프레임 · 64×64 · 8열 격자</em>
+  <img src="assets/showcase/01-spritesheet-run.png" width="512" alt="생성된 스프라이트 시트"><br>
+  <em>최종 산출물 — 달리기 사이클 64프레임 · 64×64 · 8열 격자</em>
 </p>
 
 > ### 이 저장소에 대하여
@@ -36,10 +36,12 @@
 
 AnimateDiff로 **64프레임 영상**을 생성한 뒤 프레임을 추출해 격자로 배치합니다.
 
-| | | |
-|:---:|:---:|:---:|
-| <img src="assets/showcase/03-animation-swordsman.gif" width="200"> | <img src="assets/showcase/04-animation-redhair.gif" width="200"> | <img src="assets/showcase/05-animation-walk.gif" width="200"> |
-| 검사 — 64프레임 | 붉은 머리 캐릭터 — 64프레임 | 걷기 동작 — 64프레임 |
+| | |
+|:---:|:---:|
+| <img src="assets/showcase/03-animation-run-navy.gif" width="230"> | <img src="assets/showcase/04-animation-run-white.gif" width="230"> |
+| 달리기 · 남색 갑옷 — 64프레임 | 달리기 · 청백 복장 — 64프레임 |
+
+두 편 모두 **달리기 사이클**입니다. 남아 있는 애니메이션 출력물은 전부 같은 계열의 달리기라, 서로 구분되는 두 편만 실었습니다.
 
 ### 조건 ① — 프레임이 바뀌어도 같은 캐릭터인가
 
@@ -49,7 +51,7 @@ AnimateDiff로 **64프레임 영상**을 생성한 뒤 프레임을 추출해 �
 |:---:|:---:|:---:|:---:|:---:|
 | <img src="assets/showcase/consistency/frame-01.png" width="130"> | <img src="assets/showcase/consistency/frame-02.png" width="130"> | <img src="assets/showcase/consistency/frame-03.png" width="130"> | <img src="assets/showcase/consistency/frame-04.png" width="130"> | <img src="assets/showcase/consistency/frame-05.png" width="130"> |
 
-**동작은 바뀌지만 붉은 머리·짙은 청색 갑옷·장식 위치가 그대로 유지됩니다.** 5장 모두 같은 seed(`999432851959333`)·같은 프롬프트에서 나온 **하나의 영상의 프레임**입니다 — PNG 메타데이터로 확인할 수 있습니다.
+**동작은 바뀌지만 붉은 머리·짙은 남색 갑옷·장식 위치가 그대로 유지됩니다.** 5장 모두 같은 seed(`999432851959333`)·같은 프롬프트에서 나온 **하나의 영상의 프레임**입니다 — PNG 메타데이터로 확인할 수 있습니다.
 
 Text2Img로 한 장씩 뽑던 때는 이 지점에서 머리색과 옷 디테일이 프레임마다 달라졌습니다. **영상으로 만들면 일관성이 결과가 아니라 전제가 된다**는 것이 이 5장입니다.
 
@@ -57,8 +59,8 @@ Text2Img로 한 장씩 뽑던 때는 이 지점에서 머리색과 옷 디테일
 
 | 후처리 전 (영상) | 후처리 후 (스프라이트 시트) |
 |:---:|:---:|
-| <img src="assets/showcase/02-spritesheet-preview.gif" width="220"> | <img src="assets/showcase/01-spritesheet-archer.png" width="380"> |
-| 배경 제거 + GIF 미리보기 | 64×64 통일 · 8열 격자 |
+| <img src="assets/showcase/02-spritesheet-preview.gif" width="220"> | <img src="assets/showcase/01-spritesheet-run.png" width="380"> |
+| 배경 제거 + GIF 미리보기 | 64×64 통일 · 8열 격자 (64프레임) |
 
 ### 단일 캐릭터
 
@@ -148,12 +150,19 @@ OpenCV  resize(64×64) → 8열 hstack → vstack      ← 조건 ④
 
 | 폴더 | 내용 |
 |---|---|
-| `00-source.gif` | AnimateDiff 생성 원본 |
-| `01-frames-raw/` | 프레임 추출 직후 (배경 있음) · 24장 |
-| `02-frames-nobg-rgba/` | 배경 제거 (투명) · 24장 |
-| `03-frames-nobg-white/` | 배경 제거 (흰 배경) · 24장 |
+| `00-source.gif` | AnimateDiff 생성 원본 (64프레임) |
+| `01-frames-raw/` | 프레임 추출 직후 (배경 있음) · 64장 |
+| `02-frames-nobg-rgba/` | 배경 제거 (투명) · 64장 |
+| `03-frames-nobg-white/` | 배경 제거 (흰 배경) · 64장 |
 | `04-preview.gif` | 미리보기 GIF |
-| `../showcase/01-spritesheet-archer.png` | **최종 스프라이트 시트** |
+| `../showcase/01-spritesheet-run.png` | **최종 스프라이트 시트** (8×8) |
+
+> ### 이 단계별 결과물은 2026년에 재실행한 것입니다
+>
+> **`src/postprocessing.py` 를 한 줄도 고치지 않고**, 2023년에 생성해 둔 `AnimateDiff_00041_.gif`(64프레임)를 입력으로 2026-09-17에 실행한 결과입니다.
+> 2023년 당시의 산출물은 `assets/pipeline-2023-archer/` 와 `assets/showcase/12-spritesheet-archer-2023.png` 에 그대로 보존했습니다 (24프레임 · 8×3).
+>
+> 당시 완성된 스프라이트 시트가 한 장(궁수)뿐이었고 그 생성물의 품질이 낮아, **더 잘 나온 영상으로 같은 코드를 다시 돌렸습니다.** 코드·입력 모두 2023년 것이므로 파이프라인의 실제 동작을 그대로 보여줍니다.
 
 같은 프레임 번호끼리 비교하면 각 단계가 무엇을 바꿨는지 바로 보입니다.
 
@@ -250,7 +259,7 @@ stacked_img = stacked_img[:, 64:]    # ← 열(가로)만 잘라냄. 행(세로)
 ```
 
 `[:, 64:]` 가 **열만** 잘라내므로 맨 위 빈 행이 남습니다. `stacked_img[64:, 64:]` 로 고치면 해결됩니다.
-`assets/showcase/01-spritesheet-archer.png` 에도 이 빈 행이 그대로 있습니다 — 당시 산출물 그대로이기 때문입니다. 맨 위 갤러리 이미지에서 눈으로 확인하실 수 있습니다.
+`assets/showcase/01-spritesheet-run.png` 에도 이 빈 행이 그대로 있습니다 — 당시 산출물 그대로이기 때문입니다. 맨 위 갤러리 이미지에서 눈으로 확인하실 수 있습니다.
 
 > 게임 엔진이 이 시트를 8×4로 자르면 **맨 윗줄 8칸이 빈 프레임**으로 들어옵니다. 당시에는 엔진에서 시작 프레임을 지정해 쓸 수 있어 문제로 인식하지 못했습니다.
 
