@@ -8,7 +8,7 @@
 
 <p align="center">
   <img src="assets/showcase/01-spritesheet-run.png" width="512" alt="생성된 스프라이트 시트"><br>
-  <em>최종 산출물 — 달리기 사이클 64프레임 · 64×64 · 8열 격자</em>
+  <em>최종 산출물 — 달리기 64프레임 · 64×64 · 8열 격자</em>
 </p>
 
 > ### 이 저장소에 대하여
@@ -39,9 +39,9 @@ AnimateDiff로 **64프레임 영상**을 생성한 뒤 프레임을 추출해 �
 | | | |
 |:---:|:---:|:---:|
 | <img src="assets/showcase/13-animation-sword-slash.gif" width="200"> | <img src="assets/showcase/14-animation-jump.gif" width="200"> | <img src="assets/showcase/15-animation-run-alt.gif" width="200"> |
-| **검 휘두르기** — 25프레임 | **점프** — 38프레임 | **달리기 (다른 스타일)** — 25프레임 |
+| **검 휘두르기** · 파란 옷 — 25프레임 | **점프** · 빨간 옷 — 38프레임 | **달리기** · 빨간 머리, 붉은 옷 — 25프레임 |
 | <img src="assets/showcase/03-animation-run-navy.gif" width="200"> | <img src="assets/showcase/04-animation-run-white.gif" width="200"> | |
-| 달리기 · 남색 갑옷 — 64프레임 | 달리기 · 청백 복장 — 64프레임 | |
+| **달리기** · 빨간 머리, 파란 옷 — 64프레임 | **달리기** · 빨간 머리, 흰 옷 — 64프레임 | |
 
 **달리기뿐 아니라 검 공격·점프까지** 같은 파이프라인으로 생성했습니다.
 위 세 편은 당시 서비스 데모 페이지에 실렸던 결과물입니다.
